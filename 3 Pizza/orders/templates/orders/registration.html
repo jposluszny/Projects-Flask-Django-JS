@@ -1,0 +1,18 @@
+{% extends "orders/base.html" %}
+
+{% block body %}
+<div class="container">
+  <h5>Registration <a href="{% url 'index' %}">Back to the login page</a></h5>
+  {% if message %}
+      <div>
+            {{ message }}
+      </div>
+  {% endif %}
+  <form method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit">
+  </form>
+</div>
+
+{% endblock %}

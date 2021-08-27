@@ -1,0 +1,25 @@
+{% extends "orders/base.html" %}
+{% block title %}Status{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>Orders of user {{user}}. </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ol>
+        {% for i in orders %}
+          {% if i.status == "completed"%}
+            <li><span class="text-success"> {{i.status}} </span> {{i}} </li>
+          {% else %}
+            <li><span class="text-warning"> {{i.status}} </span> {{i}} </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

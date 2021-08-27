@@ -1,0 +1,29 @@
+{% extends "template.html" %}
+{% block title %} Book's details {% endblock %}
+{% block body %}
+
+{{message}} <a href={{ url_for("search") }}> Return to the search page </a><br><br>
+
+ISBN number: {{book.isbn}} <br>
+Title: {{book.title}} <br>
+Author: {{book.author}}  <br>
+Publication year: {{book.year}}  <br><br>
+Goodreads rating:<br>
+- average rating: {{average_rating}}<br>
+- work ratings count: {{work_ratings_count}}<br><br>
+Our users rating:<br>
+- average rating: {{session['ourweb_average_rating']}}<br>
+- work ratings count: {{session['ourweb_work_ratings_count']}}<br><br>
+
+<form action="{{url_for('book', book_id=book.id) }}" method="post">
+        <input type="text" name="comment" placeholder="Review the book">
+        <input type="text" name="rating" placeholder="Rate the book">
+        <button>Review</button><input type="reset" value="Clear">
+</form>
+<br>
+<p class="warning">{{instruction}}</p>
+{% for review in reviews %}
+         <p>{{ review.name }} gave rate {{ review.rating }}:
+    {{ review.comment }}  </p>
+{% endfor %}
+{% endblock %}

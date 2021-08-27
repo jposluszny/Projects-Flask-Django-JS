@@ -1,0 +1,68 @@
+{% extends "library/base.html" %}
+
+{% block title %}
+Book
+{% endblock %}
+
+
+{% block body %}
+<script type="text/javascript">
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#borrow').onclick = () => {
+      if (confirm('Do you really want to borrow this book?')) {
+      // Create new request to search for books
+      const request = new XMLHttpRequest();
+      request.open('POST', '/borrow');
+
+      // Callback function for when request completes
+      request.onload = () => {
+          // Read message from request
+         const data = JSON.parse(request.responseText);
+         document.querySelector('#message').innerHTML = data.message;
+         document.querySelector('#bookQuantity').innerHTML = data.bookQuantity;
+         }
+
+       // Add data to send with request
+       const data = new FormData();
+       isbn = document.querySelector('#isbn').innerHTML;
+       data.append('isbn', isbn);
+
+       // Add a csrf-token to the request headers so that Django accepts the request
+       var csrftoken = Cookies.get("csrftoken");
+       request.setRequestHeader("X-CSRFToken", csrftoken);
+
+       // Send data
+       request.send(data);
+       return false;
+
+     }
+     else {
+        return false;
+      }
+   }
+  });
+
+</script>
+
+
+<div class="container">
+  <div>
+      <p id="message" class="info"></p>
+      <p style="font-weight:bold"> {{book}} </p>
+
+      ISBN number: <a id="isbn">{{book.isbn}}</a><br>
+      Title: {{book.title}} <br>
+      Author: {{book.author}}  <br>
+      Publication year: {{book.year}}  <br><br>
+      Available books: <span id="bookQuantity"> {{book.quantity}} </span>.  <a href="" id="borrow">Click here to borrow. </a>
+      <br><br>
+
+  </div>
+  <div>
+      <a href="{% url 'user'  %}">Go back to the user page.</a>
+  </div>
+</div>
+
+
+{% endblock %}

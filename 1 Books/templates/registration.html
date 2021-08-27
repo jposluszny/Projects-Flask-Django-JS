@@ -1,0 +1,12 @@
+{% extends "template.html" %}
+{% block title %} Registration {% endblock %}
+{% block body %}
+Registration <a href={{ url_for("index") }}> Return to the main page </a>
+ <form  action="registration" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name"><br><br>
+        <input type="password" name="password" placeholder="Enter Your password"><br><br>
+        <input type="password" name="repassword" placeholder="Repeat Your password"><br><br>
+        <button>Submit</button><input type="reset" value="Clear">
+ </form>
+<p class="warning">{{r_message}}</p>
+ {% endblock %}

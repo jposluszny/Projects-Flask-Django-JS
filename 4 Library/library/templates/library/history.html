@@ -1,0 +1,20 @@
+{% extends "library/base.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+  <p class="bold">Your history:</p>
+  <ol>
+    {% for i in history %}
+      <li> {{ i.book }}; {{i.borrowing_date}}; {{i.return_date}}; {{i.status}} </li>
+    {% endfor %}
+  </ol>
+  <a href="{% url 'user'  %}">Go back to the user page.</a>
+</div>
+
+
+{% endblock %}

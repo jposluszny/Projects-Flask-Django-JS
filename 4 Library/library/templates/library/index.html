@@ -1,0 +1,28 @@
+{% extends "library/base.html" %}
+
+{% block title %}
+User
+{% endblock %}
+
+
+{% block body %}
+<div>
+<h3>Login <a href="{% url 'registration' %}">Registration</a></h3>
+
+{% if message %}
+    <div >
+        <p class="info">{{ message }}</p>
+    </div>
+
+{% endif %}
+
+<form action="{% url 'user' %}" method="post">
+    {% csrf_token %}
+    <input name="username" type="text" placeholder="Enter your name"/>
+    <input name="password" type="password" placeholder="Enter your password"/>
+    <input type="submit" value="Login"/>
+</form>
+</div>
+
+
+{% endblock %}

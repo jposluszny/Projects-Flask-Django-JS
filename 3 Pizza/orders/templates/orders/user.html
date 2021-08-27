@@ -1,0 +1,171 @@
+{% extends "orders/base_image.html" %}
+{% block title %}
+User
+{% endblock %}
+{% block body %}
+<div class="container bg_con">
+  <div class="row">
+    <div class="col-sm-8 p-2">
+      <h4>Hello <span id="userName" class="text-success font-weight-bold">{{ user.username }}</span>!</h4>
+    </div>
+    <div class="col-sm-2 text-right p-2">
+        <h4><a href="{% url 'status' %}">Status</a></h4>
+    </div>
+    <div class="col-sm-2 text-right p-2">
+        <h4><a href="{% url 'logout' %}">Logout</a></h4>
+    </div>
+  </div>
+  <hr><hr>
+  <div class="row">
+    <div class="col-sm-7 col-lg-5">
+      <div class="row">
+        <div class="col">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th class="w-50">Regular Pizza</th>
+                <th>small</th>
+                <th>large</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in regular %}
+                <tr>
+                  {% for i in e %}
+                    {% if i.price %}
+                    <td><a href="" class="Dishes" data-type="Dishes" data-name="{{i}}"
+                      data-price="{{i.price}}" data-pk={{i.pk}} data-toppings={{i.toppings}}> {{i.price}} $</a></td>
+                    {% else %}
+                    <td class="w-50">{{i}}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th class="w-50">Sicilian Pizza</th>
+                <th>small</th>
+                <th>large</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in sicilian %}
+                <tr>
+                  {% for i in e %}
+                    {% if i.price %}
+                    <td><a href="" class="Dishes" data-type="Dishes" data-name="{{i}}"
+                      data-price="{{i.price}}" data-pk={{i.pk}} data-toppings={{i.toppings}}> {{i.price}} $</a></td>
+                    {% else %}
+                    <td class="w-50">{{i}}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <table class="table table-borderless ">
+            <thead>
+              <tr>
+                <th class="w-50">Subs</th>
+                <th>small</th>
+                <th>large</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in subs %}
+                <tr>
+                  {% for i in e %}
+                    {% if i.price %}
+                    <td ><a href="" class="Dishes" data-type="Dishes" data-name="{{i}}"
+                      data-price="{{i.price}}" data-pk={{i.pk}} data-toppings={{i.toppings}}> {{i.price}} $</a></td>
+                    {% else %}
+                    <td class="w-50">{{i}}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <table class="table table-borderless ">
+            <thead>
+              <tr>
+                <th class="w-50">Salad and Pasta</th>
+                <th>normal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in salad %}
+                <tr>
+                  {% for i in e %}
+                    {% if i.price %}
+                    <td ><a href="" class="Dishes" data-type="Dishes" data-name="{{i}}"
+                      data-price="{{i.price}}" data-pk={{i.pk}} data-toppings={{i.toppings}}> {{i.price}} $</a></td>
+                    {% else %}
+                    <td class="w-50">{{i}}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <table class="table table-borderless ">
+            <thead>
+              <tr>
+                <th class="w-50">Dinner Platters</th>
+                <th>small</th>
+                <th>large</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in platters %}
+                <tr>
+                  {% for i in e %}
+                    {% if i.price %}
+                    <td ><a href="" class="Dishes" data-type="Dishes" data-name="{{i}}"
+                      data-price="{{i.price}}" data-pk={{i.pk}} data-toppings={{i.toppings}}> {{i.price}} $</a></td>
+                    {% else %}
+                    <td class="w-50">{{i}}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5 col-lg-2">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Toppings</th>
+            <th>add</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in toppings %}
+            <tr>
+              <td>{{i}}</td>
+              <td><a href="" class="Toppings" data-type="Toppings" data-name="{{i}}"
+                data-price="0.00" data-pk={{i.pk}} data-toppings='-1' >add</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6 col-lg-5 d-flex justify-content-center">
+        <div class="">
+          <h4 class="message mx-auto" id="info1">Add pizza to place an order.</h4>
+          <h4>Your order</h4>
+          <small><ul id="order"></ul></small>
+          <h3>Total: <span id="total">0.00</span> $ </h3>
+          <button id="placeOrder" type="button" class="btn btn-primary">Place the Order</button>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "template.html" %}
+{% block title %} Success {% endblock %}
+{% block body %}
+<a href={{ url_for("index") }}> Return to main page  </a><br><br>
+User {{name}} has been registered.
+ {% endblock %}

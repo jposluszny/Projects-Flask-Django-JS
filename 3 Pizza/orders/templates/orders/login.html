@@ -1,0 +1,26 @@
+{% extends "orders/base_image.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-11">
+        <form class="form-inline" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <input type="text" class="form-control m-2" placeholder="Enter your name" name="username">
+          <input type="password" class="form-control m-2" placeholder="Enter password" name="password">
+          <button type="submit" class="btn btn-primary m-2">Submit</button>
+        </form>
+      </div>
+      <div class="col-sm-1">
+        <h5 class="m-2"><a href="{% url 'registration' %}">Registration</a></h5>
+      </div>
+    </div>
+    <div class="m-2 font-weight-bold font-italic">
+      {% if message %}
+        <h4>{{message}}</h4>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
